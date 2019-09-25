@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sgs.simplylogin.CustomLoginView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/login_viewlayout"
+    android:orientation="vertical">
+
+</com.sgs.simplylogin.CustomLoginView>

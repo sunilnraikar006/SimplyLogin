@@ -1,0 +1,2 @@
+include ':app', ':simplylogin'
+rootProject.name='login'
