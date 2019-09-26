@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void bindUi() {
 
         LoginDta loginDta = new LoginDta();
-        loginDta.setmLogoDrawable(R.drawable.default_profile);
+        /*loginDta.setmLogoDrawable(R.drawable.default_profile);
         loginDta.setLogin_Title("LOGIN");
         loginDta.setTitle_Color(R.color.colorPrimary);
         loginDta.setLogin_Description("descrption1");
@@ -38,16 +38,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loginDta.setLogin_DescriptionSecond("descrption2");
         loginDta.setDescription_SecondColor(R.color.colorPrimaryDark);
         loginDta.setLogin_ButtonTitle("Verify");
-        loginDta.setButton_TextColor(R.color.colorAccent);
+        loginDta.setButton_TextColor(R.color.colorAccent);*/
         Typeface tf = Typeface.createFromAsset(getAssets(), "font/muliblack.ttf");
 
 
         customLoginView.getmVerifyButton().setTypeface(tf);
         customLoginView.getmVerifyButton().setOnClickListener(this);
-        customLoginView.getmBckground().setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        customLoginView.getmDescriptionTitle().setTypeface(tf);
+       // customLoginView.getmBckground().setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+       // customLoginView.getmDescriptionTitle().setTypeface(tf);
         customLoginView.getmDescriptionTitle().setTextSize(20);
-        customLoginView.addUiCustomData(loginDta);
+       // customLoginView.addUiCustomData(loginDta);
 
     }
 

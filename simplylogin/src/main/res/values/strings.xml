@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">lOGiN</string>
+    <string name="login_title">LOGIN</string>
+    <string name="descriptionone">Enter your mobile number to verify and Login to your account</string>
+    <string name="descriptionsecond">We will send you OTP to your \n mobile number</string>
+    <string name="login_btn_title">Verify&amp;Login</string>
+    <string name="verify_btn_title">Verify</string>
+    <string name="hint_for_mobile">Enter your mobile number</string>
+    <string name="verification_title">VERIFICATION</string>
+    <string name="otpdescriptionone">Enter the OTP to verify \n and login</string>
+    <string name="otpdescriptiontwo">We have sent OTP to your \n mobile number</string>
+    <string name="resendmessage">Did not receive OTP ?</string>
 </resources>

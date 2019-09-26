@@ -5,7 +5,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class LoginDta implements Parcelable {
+    private String hint_text;
     private String login_Title;
+    private String logo_Title;
     private String login_Description;
     private String login_DescriptionSecond;
     private String login_ButtonTitle;
@@ -22,14 +24,19 @@ public class LoginDta implements Parcelable {
     private String resendMessage;
     private int buttonbackground_color;
     private int background_tint_color;
-    private Drawable button_shape;
+    private int button_shape;
+    private int otp_digits;
 
 
     public LoginDta() {
     }
 
     protected LoginDta(Parcel in) {
+
+        hint_text = in.readString();
+        logo_Title = in.readString();
         background_tint_color = in.readInt();
+        otp_digits = in.readInt();
         resend_message_color = in.readInt();
         resendMessage = in.readString();
         otp_entrycolor = in.readInt();
@@ -189,11 +196,11 @@ public class LoginDta implements Parcelable {
         this.buttonbackground_color = buttonbackground_color;
     }
 
-    public Drawable getButton_shape() {
+    public int getButton_shape() {
         return button_shape;
     }
 
-    public void setButton_shape(Drawable button_shape) {
+    public void setButton_shape(int button_shape) {
         this.button_shape = button_shape;
     }
 
@@ -205,6 +212,30 @@ public class LoginDta implements Parcelable {
         this.background_tint_color = background_tint_color;
     }
 
+    public String getLogo_Title() {
+        return logo_Title;
+    }
+
+    public void setLogo_Title(String logo_Title) {
+        this.logo_Title = logo_Title;
+    }
+
+    public String getHint_text() {
+        return hint_text;
+    }
+
+    public void setHint_text(String hint_text) {
+        this.hint_text = hint_text;
+    }
+
+    public int getOtp_digits() {
+        return otp_digits;
+    }
+
+    public void setOtp_digits(int otp_digits) {
+        this.otp_digits = otp_digits;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -212,6 +243,9 @@ public class LoginDta implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(hint_text);
+        parcel.writeString(logo_Title);
+        parcel.writeInt(otp_digits);
         parcel.writeInt(background_tint_color);
         parcel.writeInt(resend_message_color);
         parcel.writeString(resendMessage);

@@ -20,7 +20,7 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.otp);
 
         customOtpView = findViewById(R.id.otp_viewlayout);
-
+        bindUi();
 
 
     }
@@ -29,24 +29,16 @@ public class OtpActivity extends AppCompatActivity implements View.OnClickListen
     private void bindUi() {
 
         LoginDta loginDta = new LoginDta();
-        loginDta.setmLogoDrawable(R.drawable.default_profile);
-        loginDta.setLogin_Title("LOGIN");
-        loginDta.setTitle_Color(R.color.colorPrimary);
-        loginDta.setLogin_Description("descrption1");
-        loginDta.setDescription_Color(R.color.colorAccent);
-        loginDta.setLogin_DescriptionSecond("descrption2");
-        loginDta.setDescription_SecondColor(R.color.colorPrimaryDark);
-        loginDta.setLogin_ButtonTitle("Verify");
-        loginDta.setButton_TextColor(R.color.colorAccent);
-        Typeface tf = Typeface.createFromAsset(getAssets(), "font/muliblack.ttf");
+        loginDta.setOtp_digits(6);
+       /* Typeface tf = Typeface.createFromAsset(getAssets(), "font/muliblack.ttf");
 
 
         customOtpView.getmVerifyButton().setTypeface(tf);
         customOtpView.getmVerifyButton().setOnClickListener(this);
-        customOtpView.getmBckground().setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        //customOtpView.getmBckground().setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         customOtpView.getmDescriptionTitle().setTypeface(tf);
-        customOtpView.getmDescriptionTitle().setTextSize(20);
-        customOtpView.addUiCustomData(loginDta);
+        customOtpView.getmDescriptionTitle().setTextSize(20);*/
+       // customOtpView.addUiCustomData(loginDta);
 
     }
 

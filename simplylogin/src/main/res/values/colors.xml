@@ -3,4 +3,28 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+
+
+
+
+
+
+
+
+
+
+    <color name="theme_color">#71d617</color>
+    <color name="theme_color_two">#0BEEF9</color>
+
+    <color name="scanner_line">#00ceff</color>
+
+    <color name="light_black">#606060</color>
+    <color name="hint_black">#909090</color>
+    <color name="warm_grey">#929292</color>
+    <color name="greyish_brown">#575757</color>
+
+    <color name="canary_yellow">#ffeb41</color>
+    <color name="dark_green" >#37E07D</color>
+    <color name="dark_blue" >#00526D</color>
 </resources>

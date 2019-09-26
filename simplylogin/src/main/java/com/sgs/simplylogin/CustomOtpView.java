@@ -14,6 +14,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 public class CustomOtpView extends ConstraintLayout {
     View v;
     private Context mContext;
+    private TextView mLogoTitle;
     private TextView mTitleLoginView;
     private TextView mDescriptionTitle;
     private TextView mSecondDescriptionTitle;
@@ -23,10 +24,15 @@ public class CustomOtpView extends ConstraintLayout {
     private EditText mOtpDigitTwo;
     private EditText mOtpDigitThree;
     private EditText mOtpDigitFour;
+    private EditText mOtpDigitFive;
+    private EditText mOtpDigitSix;
     private TextView mTvResend;
     private TextView mTvResendMessage;
     private ImageView mLogoView;
     private ConstraintLayout mBckground;
+    private View space5;
+    private View space6;
+    private int digits;
 
     public CustomOtpView(Context context) {
         super(context);
@@ -48,7 +54,7 @@ public class CustomOtpView extends ConstraintLayout {
         mContext = context;
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.otpview, this);
+        View v = inflater.inflate(R.layout.otplogo, this);
 
         initUiElements();
     }
@@ -60,6 +66,7 @@ public class CustomOtpView extends ConstraintLayout {
 
     private void initUiElements() {
 
+        mLogoTitle = findViewById(R.id.tv_otplogo_title);
         mBckground = findViewById(R.id.otp_background);
         mLogoView = findViewById(R.id.iv_otplogo);
         mTitleLoginView = findViewById(R.id.tv_otptitle);
@@ -69,14 +76,21 @@ public class CustomOtpView extends ConstraintLayout {
         mOtpDigitTwo = findViewById(R.id.et2);
         mOtpDigitThree = findViewById(R.id.et3);
         mOtpDigitFour = findViewById(R.id.et4);
+        mOtpDigitFive = findViewById(R.id.et5);
+        mOtpDigitSix = findViewById(R.id.et6);
+        space5 = findViewById(R.id.space5);
+        space6 = findViewById(R.id.space6);
+
         mTvResend = findViewById(R.id.tv_resend_otp);
         mTvResendMessage = findViewById(R.id.tv_message_resend);
         mVerifyButton = findViewById(R.id.btn_verify_otp);
+        addUiCustomData(new LoginDta());
 
     }
 
     public void addUiCustomData(LoginDta loginDta) {
 
+        setLogoTitle(loginDta.getLogo_Title());
         setTitle(loginDta.getLogin_Title());
         setmDescription(loginDta.getLogin_Description());
         setmDescriptionSecond(loginDta.getLogin_DescriptionSecond());
@@ -90,38 +104,56 @@ public class CustomOtpView extends ConstraintLayout {
         setResendMessage(loginDta.getResendMessage());
         setResendMessageColor(loginDta.getResend_message_color());
         setUiBackgroundColor(loginDta.getBackground_color());
+        setOtpDigits(loginDta.getOtp_digits());
+        setOtpEntryColor(loginDta.getOtp_entrycolor());
 
 
     }
 
+    private void setOtpDigits(int otp_digits) {
+        this.digits = otp_digits;
+        if (otp_digits == 4) {
+            otpDigitsVisibility(GONE);
+        } else if (otp_digits == 6) {
+            otpDigitsVisibility(VISIBLE);
+        } else {
+            otpDigitsVisibility(GONE);
+        }
+    }
+
+    private void otpDigitsVisibility(int i) {
+        mOtpDigitFive.setVisibility(i);
+        mOtpDigitSix.setVisibility(i);
+        space5.setVisibility(i);
+        space6.setVisibility(i);
+    }
+
+
+    private void setLogoTitle(String logo_title) {
+        if (logo_title != null && !logo_title.isEmpty()) {
+            this.mLogoTitle.setText(logo_title);
+            this.mLogoView.setVisibility(GONE);
+        } else
+            this.mLogoTitle.setVisibility(GONE);
+    }
+
+
     private void setResendMessage(String resendMessage) {
-        mTvResendMessage.setText(resendMessage);
+        if (resendMessage != null && !resendMessage.isEmpty())
+            this.mTvResendMessage.setText(resendMessage);
+        else this.mTvResendMessage.setText(R.string.resendmessage);
     }
 
     private void setResendMessageColor(int resend_btn_color) {
-        setComponentTextColor(mTvResendMessage, resend_btn_color);
+        setTextTColor(mTvResendMessage, resend_btn_color, getResources().getColor(R.color.colorPrimaryDark));
     }
 
     private void setResendButtonColor(int resend_btn_color) {
-        // this.mTvResend.setTextColor(resend_btn_color);
-        setComponentTextColor(mTvResend, resend_btn_color);
-    }
-
-    private void setComponentTextColor(TextView mTvResend, int color) {
-
-        if (color != 0) {
-            mTvResend.setTextColor(color);
-        } else {
-            mTvResend.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-        }
-
-
+        setTextTColor(mTvResend, resend_btn_color, getResources().getColor(R.color.colorPrimaryDark));
     }
 
     private void setUiBackgroundColor(int color) {
-
         setUiComponentBgColor(mBckground, color);
-        //this.mBckground.setBackgroundColor(color);
     }
 
     private void setUiComponentBgColor(View view, int color) {
@@ -134,23 +166,39 @@ public class CustomOtpView extends ConstraintLayout {
     }
 
     private void setmVerifyButton(String login_buttonTitle) {
-        this.mVerifyButton.setText(login_buttonTitle);
+
+        if (login_buttonTitle != null && !login_buttonTitle.isEmpty())
+            this.mVerifyButton.setText(login_buttonTitle);
+        else this.mVerifyButton.setText(R.string.verify_btn_title);
     }
 
     private void setmDescriptionSecond(String login_descriptionSecond) {
-        this.mSecondDescriptionTitle.setText(login_descriptionSecond);
+        if (login_descriptionSecond != null && !login_descriptionSecond.isEmpty())
+            this.mSecondDescriptionTitle.setText(login_descriptionSecond);
+        else this.mSecondDescriptionTitle.setText(R.string.otpdescriptiontwo);
     }
 
     private void setmDescription(String login_description) {
-        this.mDescriptionTitle.setText(login_description);
+
+        if (login_description != null && !login_description.isEmpty())
+            this.mDescriptionTitle.setText(login_description);
+        else this.mDescriptionTitle.setText(R.string.otpdescriptionone);
+
     }
 
     private void setTitle(String login_title) {
-        this.mTitleLoginView.setText(login_title);
+
+        if (login_title != null && !login_title.isEmpty())
+            this.mTitleLoginView.setText(login_title);
+        else
+            this.mTitleLoginView.setText(R.string.verification_title);
     }
 
     public void setmLogoView(int drawable) {
-        this.mLogoView.setImageResource(drawable);
+
+        if (drawable != 0)
+            this.mLogoView.setImageResource(drawable);
+        else this.mLogoView.setImageResource(R.drawable.login_screen);
     }
 
     public void setOtpEntryColor(int color) {
@@ -162,10 +210,19 @@ public class CustomOtpView extends ConstraintLayout {
     }
 
     private void setColor(int color) {
-        this.mOtpDigitOne.setTextColor(color);
-        this.mOtpDigitTwo.setTextColor(color);
-        this.mOtpDigitThree.setTextColor(color);
-        this.mOtpDigitFour.setTextColor(color);
+        if (this.digits == 4) {
+            this.mOtpDigitOne.setTextColor(color);
+            this.mOtpDigitTwo.setTextColor(color);
+            this.mOtpDigitThree.setTextColor(color);
+            this.mOtpDigitFour.setTextColor(color);
+        } else if (this.digits == 6) {
+            this.mOtpDigitOne.setTextColor(color);
+            this.mOtpDigitTwo.setTextColor(color);
+            this.mOtpDigitThree.setTextColor(color);
+            this.mOtpDigitFour.setTextColor(color);
+            this.mOtpDigitFive.setTextColor(color);
+            this.mOtpDigitSix.setTextColor(color);
+        }
     }
 
     public String getOtp() {
@@ -179,19 +236,28 @@ public class CustomOtpView extends ConstraintLayout {
     }
 
     public void setmTitleColor(int color) {
-        this.mTitleLoginView.setTextColor(getResources().getColor(color));
+        setTextTColor(this.mTitleLoginView, color, getResources().getColor(R.color.colorPrimaryDark));
+
+    }
+
+    private void setTextTColor(TextView tv, int color, int defaultcolor) {
+
+        if (color != 0)
+            tv.setTextColor(color);
+        else tv.setTextColor(defaultcolor);
+
     }
 
     public void setmDescriptionColor(int color) {
-        this.mDescriptionTitle.setTextColor(getResources().getColor(color));
+        setTextTColor(this.mDescriptionTitle, color, getResources().getColor(R.color.colorPrimaryDark));
     }
 
     public void setmDescriptionSecondColor(int color) {
-        this.mSecondDescriptionTitle.setTextColor(getResources().getColor(color));
+        setTextTColor(this.mSecondDescriptionTitle, color, getResources().getColor(R.color.colorPrimaryDark));
     }
 
     public void setmVerifyButtonColor(int color) {
-        this.mVerifyButton.setTextColor(getResources().getColor(color));
+        setTextTColor(this.mVerifyButton, color, getResources().getColor(R.color.colorPrimaryDark));
     }
 
     public TextView getmTitleLoginView() {
